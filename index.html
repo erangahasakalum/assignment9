@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 9</title>
+    <style>
+        main{
+            width: fit-content;
+            height: fit-content;
+            position: absolute;
+
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        #light-panel{
+            display: flex;
+            width: fit-content;
+            height: fit-content;
+            margin: auto;
+        }
+        #btn-panel{
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .light{
+            width: 150px;
+            height: 80px;
+            border: 2px solid black;
+        }
+
+        .light_on {
+            background: red;
+            box-shadow: 0px 0px 20px red;
+        }
+        .light_on2 {
+            background: hotpink;
+            box-shadow: 0px 0px 20px hotpink;
+        }
+
+
+    </style>
+</head>
+<body>
+<main>
+<!--    light panel-->
+    <section id="light-panel">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </section>
+
+<!--    buttn panel-->
+    <section id="btn-panel">
+        <button  type="button" id="start-btn">START</button>
+        <button type="button" id="end-btn">END</button>
+    </section>
+</main>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+
+    <script>
+
+
+
+        $("#start-btn").on('click',()=>{
+
+        })
+        $("#end-btn").on('click',()=>{
+
+        })
+    </script>
+</body>
+</html>
