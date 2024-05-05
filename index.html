@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Assignment 9</title>
+    <title>KIIT</title>
+
     <style>
-        main{
+
+        main {
             width: fit-content;
             height: fit-content;
             position: absolute;
@@ -16,22 +18,24 @@
             margin: auto;
         }
 
-        #light-panel{
+        #light-panel {
             display: flex;
             width: fit-content;
             height: fit-content;
             margin: auto;
         }
-        #btn-panel{
+
+        #btn-panel {
             text-align: center;
-            margin: 20px 0;
+            margin: 20px 0px;
         }
 
-        .light{
-            width: 150px;
-            height: 80px;
+        .light {
+            width: 100px;
+            aspect-ratio: 2/1;
             border: 2px solid black;
         }
+
 
         .light_on {
             background: red;
@@ -42,39 +46,79 @@
             box-shadow: 0px 0px 20px hotpink;
         }
 
-
     </style>
+
+
 </head>
 <body>
 <main>
-<!--    light panel-->
+    <!-- Light Panel -->
     <section id="light-panel">
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-    </section>
 
-<!--    buttn panel-->
+        <div class="light"></div> <!-- light 01 -->
+        <div class="light"></div> <!-- light 02 -->
+        <div class="light"></div> <!-- light 03 -->
+        <div class="light"></div> <!-- light 04 -->
+        <div class="light"></div> <!-- light 05 -->
+        <div class="light"></div> <!-- light 06 -->
+
+    </section>
+    <!-- Button Panel -->
     <section id="btn-panel">
-        <button  type="button" id="start-btn">START</button>
-        <button type="button" id="end-btn">END</button>
+        <button type="button" id="start">Start</button>
+        <button type="button" id="stop">Stop</button>
     </section>
 </main>
-    <script src="lib/jquery-3.7.1.min.js"></script>
 
-    <script>
-
+<audio id="audio" src="audio/night-rider.mp3"></audio>
 
 
-        $("#start-btn").on('click',()=>{
+<script src="lib/jquery-3.7.1.min.js"></script>
+<script>
 
-        })
-        $("#end-btn").on('click',()=>{
+    var current_light_index = 0;
+    var max_light_count = 6;
+    var move = "RIGHT"; // RIGHT or LEFT
 
-        })
-    </script>
+    var myInterval = null;
+
+    function updateLightPanel() {
+        $(".light").removeClass("light_on");
+        $(".light").removeClass("light_on2");
+
+
+        $(".light").eq(current_light_index).addClass("light_on");
+
+        if(move==="RIGHT") {
+            if(current_light_index!==0) $(".light").eq(current_light_index-1).addClass("light_on2");
+
+            ++current_light_index;
+            if(current_light_index>max_light_count - 2) {
+                move = "LEFT";
+            }
+
+        } else {
+            $(".light").eq(current_light_index+1).addClass("light_on2");
+
+            --current_light_index;
+            if(current_light_index===0) {
+                move = "RIGHT";
+            }
+        }
+
+    }
+
+    $("#start").on("click", () => {
+        myInterval = setInterval(updateLightPanel, 50);
+        $("#audio")[0].play();
+    });
+
+    $("#stop").on("click", () => {
+        myInterval = clearInterval( myInterval);
+        $("#audio")[0].pause();
+    });
+
+</script>
+
 </body>
 </html>
